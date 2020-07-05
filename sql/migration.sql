@@ -18,3 +18,6 @@ VALUES('Сашо Роман президент', 'Lorem ipsum dolor sit amet, co
 
 INSERT INTO mycms.tb_blog_post(title, content, priview_content)
 VALUES('Излезе HTML 8', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore', 'Невероятно но факт');
+
+INSERT INTO mycms.tb_blog_post(title, content, priview_content)
+VALUES('Почнахме да пишем бази', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore', 'Еми почнахме');
