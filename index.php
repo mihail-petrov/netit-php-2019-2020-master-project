@@ -1,3 +1,5 @@
+<?php include './src/db/database.php'; ?>
+
 <html>
     <head>
         <title>title</title>
@@ -19,31 +21,17 @@
             <div id="blog-post--content">
                 
                 <div class="post">
-                    <span class="post-title"> Последни клюки</span>
+                    <?php 
+                    
+                    $mysqlResult = query("SELECT * FROM tb_blog_post");
+                    while($blogPost = mysqli_fetch_assoc($mysqlResult)) {  ?>
+                    
+                    <span class="post-title"> <?php echo $blogPost['title']; ?></span>
                     <div class="post-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore </p>                        
-                    </div>
-                </div>
-
-                <div class="post">
-                    <span class="post-title">Политика служба тика</span>
-                    <div class="post-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore </p>                        
-                    </div>
-                </div>
-                
-                <div class="post">
-                    <span class="post-title">Сашо Роман президент</span>
-                    <div class="post-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore </p>                        
-                    </div>
-                </div>
-
-                <div class="post">
-                    <span class="post-title">Излезе HTML 8</span>
-                    <div class="post-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore </p>                        
-                    </div>
+                        <p><?php echo $blogPost['content']; ?> </p>                        
+                    </div>                    
+                    
+                    <?php } ?>
                 </div>
             </div>
         </div>
