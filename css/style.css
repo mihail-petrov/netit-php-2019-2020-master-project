@@ -49,3 +49,33 @@
 .post-content {
     font-size: 21px;
 }
+
+.input {
+    display         : block;
+    width           : 100%;
+    margin-bottom   : 10px;
+    padding         : 5px;
+}
+
+.submit {
+    width           : 100%;
+    background      : #dedede;
+    text-transform  : uppercase;
+    border          : none;
+    padding         : 5px 0;
+    font-weight     : bold;    
+}
+
+#signup--wrapper {
+    margin          : auto;
+    width           : 250px;
+}
+
+
+.db-error {
+    font-weight: bold;
+    border: solid 2px #000;
+    background: #e54d2;
+    text-transform: uppercase;
+    padding: 5px;
+}
