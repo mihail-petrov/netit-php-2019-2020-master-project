@@ -8,24 +8,32 @@
                class        = "input"  
                type         = "text"      
                name         = "user_name">
+        <?php displayFormError('signup', 'user_name'); ?>
         
         <input placeholder  ="User first name" 
                class        ="input"  
                type         ="text"      
                name         ="user_fname">
+        <?php displayFormError('signup', 'user_fname'); ?>
         
         <input placeholder  = "User last name" 
                class        = "input"  
                type         = "text"      
                name         = "user_lname">
+        <?php displayFormError('signup', 'user_lname'); ?>
+        
         <input placeholder  = "User E-mail address" 
                class        = "input"  
                type         = "text"      
                name         = "user_email">
+        <?php displayFormError('signup', 'user_email'); ?>
+        
         <input placeholder  = "Password" 
                class        = "input"  
                type         = "password"  
                name         = "user_pass">
+        <?php displayFormError('signup', 'user_pass'); ?>
+        
         <input placeholder  = "Repeat password" 
                class        = "input"  
                type         = "password"  
