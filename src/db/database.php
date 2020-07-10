@@ -11,5 +11,13 @@ function query($query) {
         return;
     }
     
-    return mysqli_query($connection, $query);
+    $databaseResult = mysqli_query($connection, $query);
+    
+    if(!$databaseResult) {
+        echo '<div class="db-error">';
+        echo mysqli_error($connection);
+        echo '</div>';
+    }
+    
+    return $databaseResult;
 }
