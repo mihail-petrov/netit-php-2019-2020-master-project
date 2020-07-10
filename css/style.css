@@ -79,3 +79,8 @@
     text-transform: uppercase;
     padding: 5px;
 }
+
+.form-error {
+    font-weight : bold;
+    color       : #ff0000;
+}

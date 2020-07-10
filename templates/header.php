@@ -1,4 +1,6 @@
-<?php include './src/db/database.php'; ?>
+<?php session_start(); ?>
+<?php include './src/db/database.php';      ?>
+<?php include './src/util/form.php';        ?>
 
 <html>
     
