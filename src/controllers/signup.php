@@ -1,45 +1,5 @@
 <?php
 
-function isUserAlreadyExists($columnName) {
-    
-    $userName = $columnName['user_name'];
-    $userEmail = $columnName['user_email'];
-    
-    
-    $validateIfRegistartionUserAlreadyExistQuery = "SELECT * "
-                                                 . "FROM tb_users "
-                                                 . "WHERE name = '$userName' OR email = '$userEmail'";
-    $databaseQueryResult = query($validateIfRegistartionUserAlreadyExistQuery);
-    $requestResult       = mysqli_fetch_assoc($databaseQueryResult);
-    
-    return ($requestResult != null);
-}
-
-
-function createNewUserInDatabase($databaseColumn) {
-    
-    $userName   = $databaseColumn['user_name'   ];
-    $userFname  = $databaseColumn['user_fname'  ];
-    $userLname  = $databaseColumn['user_lname'  ];
-    $userEmail  = $databaseColumn['user_email'  ];
-    $userPass   = $databaseColumn['user_pass'   ];
-    
-    $createNewUserRequest = "INSERT INTO tb_users(name, fname, lname, email, password) "
-                           . "VALUES('$userName', '$userFname', '$userLname', '$userEmail', '$userPass')";    
-    
-    return query($createNewUserRequest);
-}
-
-// UPDATE
-function assigneRoleToUser($userid, $roleId) {
-    
-    $assigneRoleToInsertedUserQuery = "INSERT INTO tb_user__role(user_id, role_id) "
-                                    . "VALUES($userid, $roleId)";    
-
-    return query($assigneRoleToInsertedUserQuery);
-}
-
-
 if(isset($_POST['user_request_tokken']) AND $_POST['user_request_tokken'] == 1) {
     
     $userName           = isset($_POST['user_name'           ]) ? $_POST['user_name'    ] : '';
@@ -70,11 +30,11 @@ if(isset($_POST['user_request_tokken']) AND $_POST['user_request_tokken'] == 1) 
         return setFormError('signup', 'user_pass', 'User password and password repeat must be the same strring');
     }
     
-    if(isUserAlreadyExists(array('user_name' => $userName, 'user_email' => $userEmail))) {
+    if(Auth::isUserAlreadyExists(array('user_name' => $userName, 'user_email' => $userEmail))) {
         return setFormError('signup', 'user_name', 'This user already exists');
     }
     
-    $isUserrCreated = createNewUserInDatabase(array(
+    $isUserrCreated = Auth::createNewUser(array(
         'user_name'     => $userName,
         'user_fname'    => $userFname,
         'user_lname'    => $userLname,
@@ -82,17 +42,7 @@ if(isset($_POST['user_request_tokken']) AND $_POST['user_request_tokken'] == 1) 
         'user_pass'     => $userPass,
     ));
     
-    
     if($isUserrCreated) {
-        
-        
-        
-        $isRoleAssignedSuccessfuly = assigneRoleToUser(getLastInsertedId(), 1);
-        
-        if($isRoleAssignedSuccessfuly) {
-            echo 'User created successfuly';
-        }
+        echo 'User created successfuly';
     }
 }
-
-

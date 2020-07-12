@@ -11,8 +11,8 @@
     <div class="post">
         <?php 
 
-        $mysqlResult = query("SELECT * FROM tb_blog_post");
-        while($blogPost = mysqli_fetch_assoc($mysqlResult)) {  ?>
+        $mysqlResult = Database::query("SELECT * FROM tb_blog_post");
+        while($blogPost = Database::fetch($mysqlResult)) {  ?>
 
         <span class="post-title"> <?php echo $blogPost['title']; ?></span>
         <div class="post-content">

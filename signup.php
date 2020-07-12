@@ -24,7 +24,7 @@
         
         <input placeholder  = "User E-mail address" 
                class        = "input"  
-               type         = "text"      
+               type         = "email"      
                name         = "user_email">
         <?php displayFormError('signup', 'user_email'); ?>
         
