@@ -13,12 +13,22 @@
 <body>
       
 <div id="header">
-    <h1>@CMS</h1>
-    <div>
+    
+    <h1 class   = "logo">@CMS</h1>
+    
+    <div id     = "cms-manager">
+        <?php if(Auth::isNotAuthenticated()) { ?>        
         <ul>
-            <li><a href="signin.php">Sign in</a></li>
-            <li><a href="signup.php">Sign up</a></li>
+            <li class="list-item"><a href="signin.php">Sign in</a></li>
+            <li class="list-item"><a href="signup.php">Sign up</a></li>
         </ul>
+        <?php } ?>
+        
+        <?php if(Auth::isAuthenticated()) { ?>        
+        <ul>
+            <li class="list-item"><a href="signout.php">Sign out</a></li>
+        </ul>
+        <?php } ?>        
     </div>
 </div>
 <div id="content">
