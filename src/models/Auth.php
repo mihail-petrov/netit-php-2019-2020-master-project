@@ -47,4 +47,27 @@ class Auth {
             return Auth::assigneRoleToUser(Database::getLastInsertedId(), 1);
         }
     }
+    
+    static function setAuthenticationFlagToAvailable() {
+        $_SESSION['is_authenticated'] = true;
+    }
+    
+    static function isAuthenticated() {
+        
+        if(isset($_SESSION['is_authenticated'])) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    
+    static function isNotAuthenticated() {
+        
+        return !Auth::isAuthenticated();
+    }
+    
+    static function signout() {
+        session_destroy();
+    }
 }
