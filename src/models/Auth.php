@@ -48,26 +48,45 @@ class Auth {
         }
     }
     
-    static function setAuthenticationFlagToAvailable() {
-        $_SESSION['is_authenticated'] = true;
+    static function setAuthenticatetUser($authenticatedCollectionData) {
+        
+        
+        $_SESSION['user_data_collection']   = $authenticatedCollectionData['user_data_collection'];
+        $_SESSION['user_role_collection']   = $authenticatedCollectionData['user_role_collection'];
+        $_SESSION['is_authenticated']       = true;
     }
     
     static function isAuthenticated() {
-        
-        if(isset($_SESSION['is_authenticated'])) {
-            return true;
-        }
-        
-        return false;
+        return (isset($_SESSION['is_authenticated'])) ? $_SESSION['is_authenticated'] : false;
     }
-    
     
     static function isNotAuthenticated() {
         
         return !Auth::isAuthenticated();
     }
+        
+    static function isUser() {
+        return Auth::hasRole('USER');
+    }
+    
+    static function isModerator() {
+        return Auth::hasRole('MODERATOR');
+    }
+    
+    static function isAdmin() {
+        return Auth::hasRole('ADMIN');
+    }
     
     static function signout() {
         session_destroy();
     }
+    
+    private static function hasRole($roleTitle) {
+        
+        foreach ($_SESSION['user_role_collection'] as $key => $value) {
+            if($value['role_title'] == $roleTitle) return true;
+        }
+        
+        return false;
+    }    
 }
