@@ -12,8 +12,20 @@ if(isset($_POST['user_request_tokken']) && $_POST['user_request_tokken'] == 1) {
     $userRecord = Database::get($checkIfUserExistsQuery);
     
     if($userRecord) {
-        // $_SESSION['is_authenticated'] = true;
-        Auth::setAuthenticationFlagToAvailable();
+        
+        $userRoleId                 = $userRecord['id'];
+        $getUserRoleCollectionQuery = " SELECT b.title AS role_title"
+                                    . " FROM tb_user__role  AS a, "
+                                    . "     tm_roles        AS b "
+                                    . " WHERE user_id = $userRoleId AND "
+                                    . " a.role_id = b.id";
+        $userRoleCollection         = Database::getAll($getUserRoleCollectionQuery);
+        
+        Auth::setAuthenticatetUser(array(
+            'user_data_collection' => $userRecord,
+            'user_role_collection' => $userRoleCollection
+        ));
+        
         return redirectTo('index');
     }
     
