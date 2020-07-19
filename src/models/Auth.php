@@ -60,21 +60,25 @@ class Auth {
         return (isset($_SESSION['is_authenticated'])) ? $_SESSION['is_authenticated'] : false;
     }
     
-    static function isNotAuthenticated() {
-        
+    static function isNotAuthenticated() {    
         return !Auth::isAuthenticated();
     }
         
     static function isUser() {
-        return Auth::hasRole('USER');
+        
+        return Auth::isAuthenticated() && 
+               Auth::hasRole('USER');
     }
     
     static function isModerator() {
-        return Auth::hasRole('MODERATOR');
+        return Auth::isAuthenticated() && 
+               Auth::hasRole('MODERATOR');
     }
     
     static function isAdmin() {
-        return Auth::hasRole('ADMIN');
+        
+        return Auth::isAuthenticated() && 
+               Auth::hasRole('ADMIN');
     }
     
     static function signout() {
