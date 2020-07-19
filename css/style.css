@@ -11,10 +11,22 @@
     
 }
 
-#category-placeholder {
+.wrapper {
     width           : 960px;
     margin          : auto;
     margin-bottom   : 28px;
+}
+
+.mb-5 {
+    margin-bottom: 5px;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.mb-25 {
+    margin-bottom: 25px;
 }
 
 .category-placeholder--category {
@@ -83,4 +95,27 @@
 .form-error {
     font-weight : bold;
     color       : #ff0000;
+}
+
+
+.list-item {
+    background  : #2071c5;
+    display     : inline-block;
+    color       : #fff;
+}
+
+
+.list-item a {
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.logo {
+    display: inline-block;
+    margin-right: 24px;
+}
+
+#cms-manager {
+    display: inline-block;
 }
