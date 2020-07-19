@@ -52,6 +52,17 @@ class Database {
         return mysqli_fetch_assoc($databaseResultSet);
     }
     
+    static function getAll($databaseQuery) {
+        
+        $resultCollection   = array();
+        $databaseResultSet  = Database::query($databaseQuery);
+        while($result = mysqli_fetch_assoc($databaseResultSet)) {
+            array_push($resultCollection, $result);
+        }
+        
+        return $resultCollection;
+    }
+    
     static function fetch($databaseResultSet) {
         return mysqli_fetch_assoc($databaseResultSet);
     }
