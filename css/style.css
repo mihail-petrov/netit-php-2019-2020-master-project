@@ -119,3 +119,12 @@
 #cms-manager {
     display: inline-block;
 }
+
+
+.btn {
+    background: #2071c5;
+    display: inline-block;
+    color: #fff;    
+    padding: 10px;
+    text-decoration: none;
+}
