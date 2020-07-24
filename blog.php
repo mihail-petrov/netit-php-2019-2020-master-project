@@ -1,4 +1,4 @@
-<?php include('./templates/header.php'); ?>
+<?php include('./templates/user/header.php'); ?>
 <?php include('./src/controllers/blog.php'); ?>
 
 <?php $categoryFetch    = Database::query("SELECT * FROM tm_categories"); ?>
@@ -62,4 +62,4 @@
     </div>
 </div>
 
-<?php include('./templates/footer.php'); ?>
+<?php include('./templates/user/footer.php'); ?>
