@@ -66,4 +66,11 @@ class Database {
     static function fetch($databaseResultSet) {
         return mysqli_fetch_assoc($databaseResultSet);
     }
+    
+    static function count($tableName) {
+        
+        $databaseQuery = "SELECT COUNT(*) AS count FROM $tableName";
+        return Database::get($databaseQuery)['count'];
+    }
+    
 }
