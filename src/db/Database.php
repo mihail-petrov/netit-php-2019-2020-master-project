@@ -105,4 +105,16 @@ class Database {
         $queryBuilder = substr_replace($queryBuilder, " ", strlen($queryBuilder) - 1);
         return $queryBuilder;
     }
+    
+    static function delete($tableName, $whereCollection) {
+        
+        $queryBuilder = "DELETE FROM $tableName WHERE ";
+        
+        foreach ($whereCollection as $key => $value) {
+            $queryBuilder .= "$key = '$value',";
+        }                   
+        
+        $queryBuilder = substr_replace($queryBuilder, " ", strlen($queryBuilder) - 1);
+        return $queryBuilder;
+    }
 }
