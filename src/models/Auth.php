@@ -18,25 +18,22 @@ class Auth {
     }
 
     static function createNewUserInDatabase($databaseColumn) {
-
-        $userName   = $databaseColumn['user_name'   ];
-        $userFname  = $databaseColumn['user_fname'  ];
-        $userLname  = $databaseColumn['user_lname'  ];
-        $userEmail  = $databaseColumn['user_email'  ];
-        $userPass   = $databaseColumn['user_pass'   ];
-
-        $createNewUserRequest = "INSERT INTO tb_users(name, fname, lname, email, password) "
-                               . "VALUES('$userName', '$userFname', '$userLname', '$userEmail', '$userPass')";    
-
-        return Database::query($createNewUserRequest);
+        
+        return Database::insert('tb_users', array(
+            'name'      => $databaseColumn['user_name'   ],
+            'fname'     => $databaseColumn['user_fname'  ],
+            'lname'     => $databaseColumn['user_lname'  ],
+            'email'     => $databaseColumn['user_email'  ],
+            'password'  => $databaseColumn['user_pass'   ]
+        ));
     }
     
     static function assigneRoleToUser($userid, $roleId) {
 
-        $assigneRoleToInsertedUserQuery = "INSERT INTO tb_user__role(user_id, role_id) "
-                                        . "VALUES($userid, $roleId)";    
-
-        return Database::query($assigneRoleToInsertedUserQuery);
+        return Database::insert('tb_user__role', array(
+            'user_id' => $userid,
+            'role_id' => $roleId
+        ));
     }
         
     static function createNewUser($databaseColumn) {
