@@ -1,6 +1,6 @@
 <?php
 
-if(!Auth::isAdmin()) {
+if(!(Auth::isAdmin() || Auth::isModerator())) {
     redirectTo('signin');
 }
 
