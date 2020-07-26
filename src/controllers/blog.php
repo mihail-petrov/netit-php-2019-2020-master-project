@@ -6,7 +6,8 @@ if(Auth::isNotAuthenticated()) {
 
 function listAllBlogPost() {
 
-    $myCategory = null;
+    $myCategory         = null;
+    $totalItemPerPage   = 5;
     
     if(isset($_GET['post_search_tokken']) AND $_GET['post_search_tokken'] == 1) {
 
@@ -34,7 +35,10 @@ function listAllBlogPost() {
 				b.category_id = $myCategory");
     }    
     
-    return Database::query("SELECT * FROM tb_blog_post");
+    $pageLimit  = Pagination::getPageLimit();
+    $pageOffset = Pagination::getPageOffset();
+    Pagination::setTotalCount(Database::count("tb_blog_post"));
+    return Database::getAll("SELECT * FROM tb_blog_post LIMIT $pageOffset, $pageLimit");
 }
 
 

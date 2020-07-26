@@ -49,17 +49,22 @@
 
     <div class="post">
         <?php 
-
-        $mysqlResult    = listAllBlogPost();
-        while($blogPost = Database::fetch($mysqlResult)) {  ?>
-
-        <span class="post-title"> <?php echo $blogPost['title']; ?></span>
+        foreach (listAllBlogPost() as $key => $blogPost) { ?>
+        
+        <span class="post-title"> 
+            <?php echo $blogPost['title']; ?>
+        </span>
         <div class="post-content">
             <p><?php echo $blogPost['content']; ?> </p>                        
+
         </div>                    
 
         <?php } ?>
     </div>
+    
+    <?php Pagination::display(); ?>
 </div>
+
+
 
 <?php include('./templates/user/footer.php'); ?>
