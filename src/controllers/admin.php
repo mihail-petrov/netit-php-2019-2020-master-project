@@ -6,19 +6,14 @@ if(!(Auth::isAdmin() || Auth::isModerator())) {
 
 if(isset($_POST['create_new_post_tokken']) && $_POST['create_new_post_tokken'] == '1') {
     
-    $postTitle          = $_POST['post_title'];
-    $postCategory       = $_POST['post_category'];
-    $postContent        = $_POST['post_content'];
-    $postPreviewContent = $_POST['post_preview_content'];
+    Database::insert('tb_blog_post', array(
+        'title'             => $_POST['post_title'],
+        'content'           => $_POST['post_content'],
+        'priview_content'   => $_POST['post_preview_content']
+    ));
     
-    $createPostQuery = "INSERT INTO tb_blog_post(title, content, priview_content) "
-                      . "VALUES('$postTitle', '$postContent', '$postPreviewContent')";
-    
-    Database::query($createPostQuery);
-    $postId = Database::getLastInsertedId();
-    
-    $createPostCategoryQuery = "INSERT INTO tb_blog_post__categories(blog_post_id, category_id) "
-                              . "VALUES($postId, $postCategory)";
-    
-    Database::query($createPostCategoryQuery);
+    Database::insert('tb_blog_post__categories', array(
+        'blog_post_id'  => Database::getLastInsertedId(),
+        'category_id'   => $_POST['post_category'],
+    ));    
 }
