@@ -73,18 +73,36 @@ class Database {
     
     static function insert($tableName, $columnCollection) {
    
-        $insertQuery = "INSERT INTO $tableName (";
+        $queryBuilder = "INSERT INTO $tableName (";
         foreach ($columnCollection as $key => $value) {
-            $insertQuery .= $key . ',';
+            $queryBuilder .= $key . ',';
         }
-        $insertQuery = substr_replace($insertQuery, ")", strlen($insertQuery) - 1);
-        $insertQuery .= ' VALUES(';
+        $queryBuilder = substr_replace($queryBuilder, ")", strlen($queryBuilder) - 1);
+        $queryBuilder .= ' VALUES(';
         
         foreach ($columnCollection as $key => $value) {
-            $insertQuery .= '\'' . $value . '\',';
+            $queryBuilder .= '\'' . $value . '\',';
         }
-        $insertQuery = substr_replace($insertQuery, ")", strlen($insertQuery) - 1);
+        $queryBuilder = substr_replace($queryBuilder, ")", strlen($queryBuilder) - 1);
         
-        return Database::query($insertQuery);
+        return Database::query($queryBuilder);
+    }
+    
+    static function update($tableName, $columnCollection, $whereCollection ) {
+        
+        $queryBuilder = "UPDATE $tableName SET ";
+        
+        foreach ($columnCollection as $key => $value) {
+            $queryBuilder .= "$key = '$value',";
+        }
+        
+        $queryBuilder  = substr_replace($queryBuilder, " ", strlen($queryBuilder) - 1);
+        $queryBuilder .= " WHERE ";
+        foreach ($whereCollection as $key => $value) {
+            $queryBuilder .= "$key = '$value',";
+        }        
+        
+        $queryBuilder = substr_replace($queryBuilder, " ", strlen($queryBuilder) - 1);
+        return $queryBuilder;
     }
 }
