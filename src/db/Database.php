@@ -16,9 +16,7 @@ class Database {
 
     static function query($query) { 
 
-        // Connet to database
         $connection = Database::dbConnect();
-        // $connection = mysqli_connect("localhost", "root", "", "mycms");
 
         if(!$connection) {
             echo mysqli_connect_error();
@@ -73,4 +71,20 @@ class Database {
         return Database::get($databaseQuery)['count'];
     }
     
+    static function insert($tableName, $columnCollection) {
+   
+        $insertQuery = "INSERT INTO $tableName (";
+        foreach ($columnCollection as $key => $value) {
+            $insertQuery .= $key . ',';
+        }
+        $insertQuery = substr_replace($insertQuery, ")", strlen($insertQuery) - 1);
+        $insertQuery .= ' VALUES(';
+        
+        foreach ($columnCollection as $key => $value) {
+            $insertQuery .= '\'' . $value . '\',';
+        }
+        $insertQuery = substr_replace($insertQuery, ")", strlen($insertQuery) - 1);
+        
+        return Database::query($insertQuery);
+    }
 }
